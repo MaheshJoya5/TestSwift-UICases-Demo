@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @AppStorage("userName") var nameUser = "Good"
+    @AppStorage("userName") var nameUser = "Good" // this is app storage
     @State private var showingAddUser = true
     var body: some View{
         Text(nameUser)
