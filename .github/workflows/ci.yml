@@ -20,6 +20,8 @@ jobs:
         run: |
           ls -l  # List top-level files in the root directory
 
+
+
       # Step 3: List files inside the SourceCode folder to confirm correct structure
       - name: List files in SourceCode directory
         run: |
@@ -31,6 +33,8 @@ jobs:
       - name: Build the iOS App
         run: |
           xcodebuild -project SourceCode/SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=16.0' build
+
+
 
       # Step 6: Run Unit Tests
       - name: Run Unit Tests
