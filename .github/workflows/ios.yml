@@ -24,10 +24,10 @@ jobs:
         run: /usr/bin/xcodebuild -version
       - name: Build Cleanup
         run: >
-          xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction
+          xcodebuild clean -project SwiftUIDemo.xcodeproj -scheme SwiftUIDemo
           | xcpretty
       - name: Build Test
         run: >
-          xcodebuild test -project GitHubAction.xcodeproj -scheme GitHubAction
+          xcodebuild test -project SwiftUIDemo.xcodeproj -scheme SwiftUIDemo
           -destination 'platform=iOS   Simulator,name=iPhone 14,OS=16.2' |
           xcpretty -s
