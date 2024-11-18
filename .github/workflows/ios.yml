@@ -12,6 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
      
+      - name: List Top-level Directory Contents
+        run: |
+          ls -l  # List top-level files in the root directory
+
+      - name: List files in SourceCode directory
+        run: |
+           ls -R SourceCode  # List files recursively in SourceCode folder
+
       - name: Running Xcode version Is?
         run: /usr/bin/xcodebuild -version
       - name: Build Cleanup
