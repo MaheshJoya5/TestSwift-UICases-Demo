@@ -20,10 +20,9 @@ jobs:
         run: |
            ls -R SourceCode  # List files recursively in SourceCode folder
 
-      - name: Set up Xcode
-        uses: apple-actions/setup-xcode@v3
-        with:
-             xcode-version: '15.4'  # or specify the version you need
+      - name: Selecting Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_16.0.app
+
       - name: Running Xcode version Is?
         run: /usr/bin/xcodebuild -version
       - name: Build Cleanup
