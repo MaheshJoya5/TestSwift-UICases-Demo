@@ -11,8 +11,7 @@ jobs:
     name: Build and Test iOS Application
     runs-on: macos-latest
   steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+  
     - name: Build the iOS App
       run: >
         xcodebuild -workspace SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo
