@@ -1,29 +1,26 @@
 name: iOS starter workflow
-
-on:
+'on':
   push:
-    branches: [ "main" ]
+    branches: main
   pull_request:
-    branches: [ "main" ]
-
+    branches: main
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and test
     runs-on: macos-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-     - name: Selecting Xcode Version
-        run: sudo xcode-select -switch /Applications/Xcode_146.0.app
-
-     - name: Running Xcode version Is?
+        uses: actions/checkout@v2
+      - name: Selecting Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_14.2.app
+      - name: Running Xcode version Is?
         run: /usr/bin/xcodebuild -version
-   
       - name: Build Cleanup
-        run: |
-          xcodebuild clean -project SwiftUIDemo.xcodeproj -scheme GitHubAction | xcpretty
-          
-
-        
+        run: >
+          xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction
+          | xcpretty
+      - name: Build Test
+        run: >
+          xcodebuild test -project GitHubAction.xcodeproj -scheme GitHubAction
+          -destination 'platform=iOS   Simulator,name=iPhone 14,OS=16.2' |
+          xcpretty -s
