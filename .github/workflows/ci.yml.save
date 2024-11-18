@@ -1,0 +1,23 @@
+name: TestActions iOS Cli
+
+on:
+  push:
+    branches:
+      - TestActions
+  pull_request:
+    branches:
+      - TestActions
+jobs:
+  build:
+    name: Build iOS App
+    runs-on: macos-latest
+    steps:
+name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v2
+        with:
+          xcode-version: '16.0'
+
+      - name: Build the App
+        run: |
+          xcodebuild -project SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo  -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16,OS=16.0' build
+
