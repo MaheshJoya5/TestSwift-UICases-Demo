@@ -1,32 +1,25 @@
 name: iOS CI/CD Workflow
-
-# This is the basic workflow for building and testing the iOS app
 on:
   push:
     branches:
-      - TestActions  # Trigger the workflow on push to the 'main' branch
+      - TestActions
   pull_request:
     branches:
-      - TestActions  # Trigger the workflow on pull requests to 'main'
-
+      - TestActions
 jobs:
   build_and_test:
     name: Build and Test iOS Application
     runs-on: macos-latest
-
-    steps:
-      # Step 1: Checkout the code from GitHub repository
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-
-     
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
     - name: Build the iOS App
-        run: |
-          xcodebuild -workspace SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.0' build
-
-      # Step 4: Run Unit Tests
-      - name: Run Unit Tests
-        run: |
-          xcodebuild -workspace SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.0' test
-    
+      run: >
+        xcodebuild -workspace SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo
+        -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone
+        12,OS=16.0' build
+    - name: Run Unit Tests
+      run: >
+        xcodebuild -workspace SwiftUIDemo.xcodeproj -scheme TestSwift-UICases-Demo
+        -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone
+        12,OS=16.0' test
