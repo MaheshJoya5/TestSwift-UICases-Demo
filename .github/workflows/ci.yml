@@ -1,0 +1,32 @@
+---
+name: iOS CI/CD Workflow
+on:
+  push:
+    branches:
+      - TestActions
+  pull_request:
+    branches:
+      - TestActions
+jobs:
+  build_and_test:
+    name: Build and Test iOS Application
+    runs-on: macos-latest
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: List Top-level Directory Contents
+      run: |
+        ls -l  # List top-level files in the root directory
+    - name: List files in SourceCode directory
+      run: |
+        ls -R SourceCode  # List files recursively in SourceCode folder
+    - name: Build the iOS App
+      run: >
+        xcodebuild -project SourceCode/SwiftUIDemo.xcodeproj -scheme
+        TestSwift-UICases-Demo -sdk iphonesimulator -destination 'platform=iOS
+        Simulator,name=iPhone 12,OS=16.0' build
+    - name: Run Unit Tests
+      run: >
+        xcodebuild -project SourceCode/SwiftUIDemo.xcodeproj -scheme
+        TestSwift-UICases-Demo -sdk iphonesimulator -destination 'platform=iOS
+        Simulator,name=iPhone 12,OS=16.0' test
